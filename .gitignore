@@ -1,5 +1,6 @@
 *.pth
+*.pt
 *.log
 
-
+/results/
 **/__pycache__/
