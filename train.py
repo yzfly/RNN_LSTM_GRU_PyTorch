@@ -8,8 +8,6 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from models import GRUNet as Net
-
 def generate_sine_wave():
     np.random.seed(2)
     T = 20
@@ -23,7 +21,8 @@ def generate_sine_wave():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--gru', type=str, default='custom', choices=['torch', 'custom'], help='GRU types to use')
+    parser.add_argument('--imp', '--implementation', type=str, default='custom', choices=['torch', 'custom'], help='Implementation types to use')
+    parser.add_argument('--arch', type=str, default='gru', choices=['rnn', 'lstm', 'gru'], help='LSTM types to use')
     parser.add_argument('--epochs', type=int, default=15, help='epochs to run')
     #args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
@@ -41,6 +40,15 @@ if __name__ == '__main__':
     test_target = torch.from_numpy(data[:3, 1:])
 
     # build the model
+    if args.arch == "gru":
+        from models import GRUNet as Net
+    elif args.arch == "lstm":
+        from models import LSTMNet as Net
+    elif args.arch == "rnn":
+        from models import RNNNet as Net
+    else:
+        raise ValueError("{} not implemented.".format(args.arch))
+
     seq = Net(args, input_size=1, hidden_dim=51)
 
     seq.double()
@@ -81,5 +89,5 @@ if __name__ == '__main__':
         draw(y[0], 'r')
         draw(y[1], 'g')
         draw(y[2], 'b')
-        plt.savefig('results/predict{}_{}.png'.format(i, args.gru))
+        plt.savefig('results/predict{}_{}_{}.png'.format(i, args.arch, args.imp))
         plt.close()
