@@ -21,7 +21,7 @@ To do:
 python train.py --arch=$ARCH() --imp=$Implementation
 ```
 * ```--arch```: Model Architecture. Allowed choices are ```rnn```, ```lstm```, ```gru```. 
-* ```--imp```: Implementationtype. Allowed choices are ```torch```, ```custom```. You can compare the results of our implementation with pytorch's.
+* ```--imp```: Implementation type. Allowed choices are ```torch```, ```custom```. You can compare the results of our implementation with pytorch's.
 
 
 Examples:
