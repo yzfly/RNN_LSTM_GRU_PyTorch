@@ -1,14 +1,11 @@
 import torch
 import torch.nn as nn
 
-#device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
 class GRUCell(nn.Module):
     def __init__(self, input_size, hidden_dim):
         super(GRUCell, self).__init__()
         self.input_size = input_size
         self.hidden_dim = hidden_dim
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.t_layer = nn.Linear(input_size, 3*hidden_dim)
         self.pre_t_layer = nn.Linear(hidden_dim, 3*hidden_dim)
     
@@ -20,7 +17,7 @@ class GRUCell(nn.Module):
         #       out_state: of shape (batch_size, hidden_size)
 
         if pre_t is None:
-            pre_t = torch.zeros((t_in.shape(0), self.hidden_dim)).to(self.device)
+            pre_t = torch.zeros((t_in.shape(0), self.hidden_dim)).to(t_in.device)
         
         t_hidden = self.t_layer(t_in)
         pre_t_hidden = self.pre_t_layer(pre_t)

@@ -23,11 +23,13 @@ def generate_sine_wave():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--gru', type=str, default='torch', choices=['torch', 'custom'], help='GRU types to use')
+    parser.add_argument('--gru', type=str, default='custom', choices=['torch', 'custom'], help='GRU types to use')
     parser.add_argument('--epochs', type=int, default=15, help='epochs to run')
+    #args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-
     args = parser.parse_args()
+    print(args)
+    
     # set random seed to 0
     np.random.seed(0)
     torch.manual_seed(0)
