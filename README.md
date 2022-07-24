@@ -21,7 +21,7 @@ To do:
 python train.py --arch=$ARCH() --imp=$Implementation
 ```
 * ```--arch```: Model Architecture. Allowed choices are ```rnn```, ```lstm```, ```gru```. 
-* ```--imp```: Implementationtype. Allowed choices are ```torch```, ```custom```. You can compare the results of our implementation with pytorch's.
+* ```--imp```: Implementation type. Allowed choices are ```torch```, ```custom```. You can compare the results of our implementation with pytorch's.
 
 
 Examples:
@@ -50,6 +50,9 @@ The initial signal and the predicted results are shown in the image. We first gi
 This picture is from:
 > https://towardsdatascience.com/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21
 
+Example of RNNCell
+
+![RNN_LSTM_GRU_PyTorch](pics/rnn.png)
 
 ## Dependencies
 * ```pytorch```
